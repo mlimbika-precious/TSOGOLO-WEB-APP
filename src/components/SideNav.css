@@ -1,0 +1,35 @@
+.sidenav {
+  width: 200px;
+  background-color: #f1f1f1;
+  height: 200%;
+  font-weight: bold;
+}
+
+.sidenav a {
+  padding: 16px;
+  text-decoration: none;
+  color: #000;
+  display: block;
+
+}
+
+.sidenav a:hover {
+  background-color: orange;
+
+}
+
+.sublinks {
+  margin-left: 20px;
+}
+
+.sublinks a {
+  padding: 8px;
+  text-decoration: none;
+  color: #000;
+  display: block;
+  font-weight: normal;
+}
+
+.sublinks a:hover {
+  background-color: orange;
+}
