@@ -1,16 +1,13 @@
+import React from 'react'
 import { Box, Typography, TextField, Button } from '@mui/material';
-import React from 'react';
 import SideNav from '../components/SideNav';
 import NavBar from '../components/NavBar';
 
-export default function AddPersonalityQuestions() {
-  const handleInput = (event) => {
-    event.target.value = event.target.value.slice(0, 1).toUpperCase();
-  };
+export default function AddUsers() {
   return (
     <>
-      <NavBar />
-      <Box height={30} />
+    <NavBar />
+    <Box height={30} />
       <Box
         sx={{
           display: 'flex',
@@ -22,7 +19,7 @@ export default function AddPersonalityQuestions() {
         <SideNav />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <Typography variant="h5" align="center" gutterBottom>
-            Add Questions
+            Add Users
           </Typography>
           <Box
             sx={{
@@ -32,52 +29,35 @@ export default function AddPersonalityQuestions() {
             }}
           >
             <TextField
-             label="Question"
+             label="Name"
               variant="outlined" 
               margin="normal" 
               sx={{ width: '400px' }}
                />
             <TextField 
-            label="Agree Type"
+            label="Email"
              variant="outlined"
               margin="normal"
                sx={{ width: '400px' }} 
-               InputProps={{
-                inputProps: {
-                  maxLength: 1,
-                  style: {
-                    textTransform: 'uppercase',
-                  },
-                },
-                onChange: handleInput,
-              }}
+               type='email'
                />
             <TextField 
-            label="Deniel Type"
+            label="Password"
              variant="outlined"
               margin="normal"
               sx={{ width: '400px' }} 
-              InputProps={{
-                inputProps: {
-                  maxLength: 1,
-                  style: {
-                    textTransform: 'uppercase',
-                  },
-                },
-                onChange: handleInput,
-              }}
-              
+              type='password' 
               />
             <Button
              variant="contained" 
              color="primary"
              size="large"
              sx={{ width: '400px' }} >
-              Save
+              Add
             </Button>
           </Box>
         </Box>
       </Box>
     </>
-  );
+  )
 }

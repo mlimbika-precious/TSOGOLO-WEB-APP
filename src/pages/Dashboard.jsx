@@ -3,7 +3,7 @@ import SideNav from '../components/SideNav'
 import Box from '@mui/material/Box';
 import NavBar from '../components/NavBar';
 
-export default function Home() {
+export default function Dashboard() {
   return (
     <>
     <NavBar/>
@@ -11,7 +11,7 @@ export default function Home() {
     <Box sx ={{display: "flex"}}>
        <SideNav/>
        <Box component="main" sx = {{flexGrow: 1, p: 3}}>
-       <p>Home</p>
+       <p>Dashboard</p>
        </Box>
     
     </Box>

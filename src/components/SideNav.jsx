@@ -84,7 +84,7 @@ export default function SideNav() {
         </DrawerHeader>
         <Divider />
         <List>
-        <ListItem disablePadding sx={{ display: 'block' }} onClick={() => {navigate("/Home")}}>
+        <ListItem disablePadding sx={{ display: 'block' }} onClick={() => {navigate("/Dashboard")}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -101,11 +101,11 @@ export default function SideNav() {
                 >
                <InboxIcon /> 
                 </ListItemIcon>
-
-                <ListItemText primary="Home" sx={{ opacity: open ? 1 : 0 }} />
+                <Divider />
+                <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
-
+            <Divider />
             <ListItem disablePadding sx={{ display: 'block' }}  onClick={() => {navigate("/addQuestions")}}>
               <ListItemButton
                 sx={{
@@ -126,6 +126,9 @@ export default function SideNav() {
                 <ListItemText primary="Add Questions" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
+
+            <Divider />
+
             <ListItem disablePadding sx={{ display: 'block' }} onClick={() => {navigate("/questionList")}}>
               <ListItemButton
                 sx={{
@@ -143,10 +146,55 @@ export default function SideNav() {
                 >
                <InboxIcon /> 
                 </ListItemIcon>
-                <ListItemText primary="Questions List" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Questions" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+            <Divider />
+
+            <ListItem disablePadding sx={{ display: 'block' }}  onClick={() => {navigate("/addUsers")}}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+               <InboxIcon /> 
+                </ListItemIcon>
+                <ListItemText primary="Add User" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
 
+            <Divider />
+
+            <ListItem disablePadding sx={{ display: 'block' }}  onClick={() => {navigate("/allUsers")}}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+               <InboxIcon /> 
+                </ListItemIcon>
+                <ListItemText primary="Users" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+            <Divider />
         </List>  
       </Drawer>
     </Box>

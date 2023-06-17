@@ -145,7 +145,7 @@ export default function NavBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block', align: 'center' } }}
           >
-            TSOGOLO APP
+            TSOGOLO ADMIN
           </Typography>
         
           <Box sx={{ flexGrow: 1 }} />
