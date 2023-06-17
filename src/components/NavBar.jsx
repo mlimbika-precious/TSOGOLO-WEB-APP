@@ -15,21 +15,21 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { useAppStore } from '../appStore';
 
-
 const AppBar = styled(MuiAppBar, {
-    shouldForwardProp: (prop) => prop !== 'open',
-  })(({ theme}) => ({
-    zIndex: theme.zIndex.drawer + 1,
-  }));
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+}));
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-  const updateOpen = useAppStore((state) => state.updateOpen)
-  const deopen = useAppStore((state) => state.deopen)
+  const updateOpen = useAppStore((state) => state.updateOpen);
+  const deopen = useAppStore((state) => state.deopen);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -51,6 +51,10 @@ export default function NavBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const handleLogout = () => {
+    // Add your logout logic here
+  };
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -70,6 +74,12 @@ export default function NavBar() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleLogout}>
+        <IconButton size="large" aria-label="logout" color="inherit">
+          <ExitToAppIcon />
+        </IconButton>
+        <p>Logout</p>
+      </MenuItem>
     </Menu>
   );
 
@@ -122,6 +132,12 @@ export default function NavBar() {
         </IconButton>
         <p>Profile</p>
       </MenuItem>
+      <MenuItem onClick={handleLogout}>
+        <IconButton size="large" aria-label="logout" color="inherit">
+          <ExitToAppIcon />
+        </IconButton>
+        <p>Logout</p>
+      </MenuItem>
     </Menu>
   );
 
@@ -147,7 +163,7 @@ export default function NavBar() {
           >
             TSOGOLO ADMIN
           </Typography>
-        
+
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">

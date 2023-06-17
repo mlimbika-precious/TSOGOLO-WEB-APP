@@ -13,7 +13,7 @@ export default function PersonalityQuestionList() {
       <Box sx={{ display: 'flex' }}>
         <SideNav />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <TableContainer>
+          <TableContainer sx={{ marginTop: '50px' }}> {/* Add marginTop here */}
             <Table>
               <TableHead>
                 <TableRow>
