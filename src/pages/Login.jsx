@@ -5,19 +5,18 @@ import Typography from '@mui/joy/Typography';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import { Button, Link, Input } from '@mui/joy';
-import {useNavigate} from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom';
+import { PersonOutline } from '@mui/icons-material';
 
 
 export default function Login() {
   const navigate = useNavigate();
   return (
     <CssVarsProvider>
-      <main>
+      <main style={{ display: 'flex', justifyContent: 'center' }}>
         <Sheet
           sx={{
             width: 300,
-            mx: 'auto', // margin left & right
             my: 4, // margin top & bottom
             py: 3, // padding top & bottom
             px: 2, // padding left & right
@@ -26,15 +25,13 @@ export default function Login() {
             gap: 2,
             borderRadius: 'sm',
             boxShadow: 'md',
-    
           }}
           variant="outlined"
         >
           <div>
-            <Typography level="h4" component="h1">
-              <b>Welcome!</b>
+            <Typography level="h4" component="h1" align="center">
+             <b>Welcome!</b>
             </Typography>
-            <Typography level="body2">Sign in to continue.</Typography>
           </div>
           <FormControl>
             <FormLabel>Email</FormLabel>
@@ -42,7 +39,7 @@ export default function Login() {
               // html input attribute
               name="email"
               type="email"
-              placeholder="johndoe@email.com"
+              placeholder="Group2ICT@email.com"
             />
           </FormControl>
           <FormControl>
@@ -55,14 +52,17 @@ export default function Login() {
             />
           </FormControl>
 
-          <Button sx={{ mt: 1 /* margin top */ }} onClick={() => {navigate("/Home")}}>Log in</Button>
-          <Typography
-            endDecorator={<Link href="/sign-up">Sign up</Link>}
-            fontSize="sm"
-            sx={{ alignSelf: 'center' }}
+          <Button
+            sx={{
+              mt: 1 /* margin top */,
+              '&:hover': {
+                backgroundColor: 'orange',
+              },
+            }}
+            onClick={() => navigate('/dashboard')}
           >
-            Don&apos;t have an account?
-          </Typography>
+            Log in
+          </Button>
         </Sheet>
       </main>
     </CssVarsProvider>
