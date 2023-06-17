@@ -13,7 +13,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
-import {useNavigate} from 'react-router-dom'
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import AddIcon from '@mui/icons-material/Add';
+import PeopleIcon from '@mui/icons-material/People';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppStore } from '../appStore';
 
 const drawerWidth = 240;
@@ -44,11 +48,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
-
-
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -69,13 +70,36 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function SideNav() {
   const theme = useTheme();
-  // const [open, setOpen] = React.useState(true);
   const navigate = useNavigate();
-  const open = useAppStore((state) => state.deopen)
+  const open = useAppStore((state) => state.deopen);
+  const location = useLocation();
+
+  const handleListItemClick = (path) => {
+    navigate(path);
+  };
+
+  const getListItemIcon = (text) => {
+    switch (text) {
+      case 'Dashboard':
+        return <DashboardIcon />;
+      case 'Add Questions':
+        return <AddIcon />;
+      case 'Questions':
+        return <QuestionAnswerIcon />;
+
+      case 'Add User':
+        return <AddIcon />;
+      case 'Users':
+        return <PeopleIcon />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <Box height={30}/>
+      <Box height={30} />
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton>
@@ -84,118 +108,118 @@ export default function SideNav() {
         </DrawerHeader>
         <Divider />
         <List>
-        <ListItem disablePadding sx={{ display: 'block' }} onClick={() => {navigate("/Dashboard")}}>
-              <ListItemButton
+          <ListItem disablePadding sx={{ display: 'block' }} onClick={() => handleListItemClick('/Dashboard')}>
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
+                backgroundColor: location.pathname === '/Dashboard' ? 'orange' : 'transparent',
+              }}
+            >
+              <ListItemIcon
                 sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}  
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-               <InboxIcon /> 
-                </ListItemIcon>
-                <Divider />
-                <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-            <Divider />
-            <ListItem disablePadding sx={{ display: 'block' }}  onClick={() => {navigate("/addQuestions")}}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center',
                 }}
               >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-               <InboxIcon /> 
-                </ListItemIcon>
-                <ListItemText primary="Add Questions" sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-
-            <Divider />
-
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={() => {navigate("/questionList")}}>
-              <ListItemButton
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+          <Divider />
+          <ListItem disablePadding sx={{ display: 'block' }} onClick={() => handleListItemClick('/addQuestions')}>
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
+                backgroundColor: location.pathname === '/addQuestions' ? 'orange' : 'transparent',
+              }}
+            >
+              <ListItemIcon
                 sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center',
                 }}
               >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-               <InboxIcon /> 
-                </ListItemIcon>
-                <ListItemText primary="Questions" sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-            <Divider />
-
-            <ListItem disablePadding sx={{ display: 'block' }}  onClick={() => {navigate("/addUsers")}}>
-              <ListItemButton
+                <AddIcon />
+              </ListItemIcon>
+              <ListItemText primary="Add Questions" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+          <Divider />
+          <ListItem disablePadding sx={{ display: 'block' }} onClick={() => handleListItemClick('/questionList')}>
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
+                backgroundColor: location.pathname === '/questionList' ? 'orange' : 'transparent',
+              }}
+            >
+              <ListItemIcon
                 sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center',
                 }}
               >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-               <InboxIcon /> 
-                </ListItemIcon>
-                <ListItemText primary="Add User" sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
+                <QuestionAnswerIcon />
 
-            <Divider />
-
-            <ListItem disablePadding sx={{ display: 'block' }}  onClick={() => {navigate("/allUsers")}}>
-              <ListItemButton
+              </ListItemIcon>
+              <ListItemText primary="Questions" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+          <Divider />
+          <ListItem disablePadding sx={{ display: 'block' }} onClick={() => handleListItemClick('/addUsers')}>
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
+                backgroundColor: location.pathname === '/addUsers' ? 'orange' : 'transparent',
+              }}
+            >
+              <ListItemIcon
                 sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center',
                 }}
               >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-               <InboxIcon /> 
-                </ListItemIcon>
-                <ListItemText primary="Users" sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-            <Divider />
-        </List>  
+                <AddIcon />
+              </ListItemIcon>
+              <ListItemText primary="Add User" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+          <Divider />
+          <ListItem disablePadding sx={{ display: 'block' }} onClick={() => handleListItemClick('/allUsers')}>
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
+                backgroundColor: location.pathname === '/allUsers' ? 'orange' : 'transparent',
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center',
+                }}
+              >
+                <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Users" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+          <Divider />
+        </List>
       </Drawer>
     </Box>
   );

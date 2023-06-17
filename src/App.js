@@ -21,7 +21,7 @@ class App extends React.Component {
         <Route path='/addQuestions' exact element = {<AddPersonalityQuestions />}></Route>
         <Route path='/questionList' exact element = {<PersonalityQuestionList/>}></Route>
         <Route path='/addUsers' exact element = {<AddUsers/>}></Route>
-        <Route path='/allUsers' exact element = {<UsersList/>}></Route>
+        <Route path='/allUsers' exact element = {<UsersList/>}></Route> 
 
        </Routes>
       
