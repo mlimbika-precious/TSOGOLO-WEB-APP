@@ -55,7 +55,7 @@ export default function Login() {
             />
           </FormControl>
 
-          <Button sx={{ mt: 1 /* margin top */ }} onClick={() => {navigate("/Home")}}>Log in</Button>
+          <Button sx={{ mt: 1 /* margin top */ }} onClick={() => {navigate("/dashboard")}}>Log in</Button>
           <Typography
             endDecorator={<Link href="/sign-up">Sign up</Link>}
             fontSize="sm"
