@@ -1,7 +1,6 @@
 import React from 'react';
-import Header from './components/Header';
-import SideNav from './components/SideNav';
-import AddPersonalityQuestions from './components/AddPersonalityQuestions';
+import HomePage from './components/HomePage';
+import Login from './components/Login';
 
 //import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -9,12 +8,9 @@ import AddPersonalityQuestions from './components/AddPersonalityQuestions';
 class App extends React.Component {
   render() {
     return (
-     
       <div>
-      <Header />
-        <SideNav />
-    
-    
+      {/* <HomePage/> */}
+      <Login/>
       </div>
     
     );
