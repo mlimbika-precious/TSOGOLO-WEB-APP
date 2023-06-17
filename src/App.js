@@ -1,20 +1,28 @@
 import React from 'react';
-import HomePage from './components/HomePage';
-import Login from './components/Login';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Login from './pages/Login';
+import Home from './pages/Home';
+import AddPersonalityQuestions from './pages/AddPersonalityQuestions';
+import PersonalityQuestionList from './pages/PersonalityQuestionList';
 
-//import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 
 
 class App extends React.Component {
   render() {
-    return (
-      <div>
-      {/* <HomePage/> */}
-      <Login/>
-      </div>
+
+    return  <>
+  
+       <Routes>
+        <Route path='/' exact element = {<Login />}></Route>
+        <Route path='/home' exact element = {<Home />}></Route>
+        <Route path='/addQuestions' exact element = {<AddPersonalityQuestions />}></Route>
+        <Route path='/questionList' exact element = {<PersonalityQuestionList/>}></Route>
+       </Routes>
+      
+      </>
     
-    );
-  }
+      }
 }
 
 export default App;

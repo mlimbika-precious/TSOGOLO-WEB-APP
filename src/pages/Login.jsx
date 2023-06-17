@@ -5,39 +5,15 @@ import Typography from '@mui/joy/Typography';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import { Button, Link, Input } from '@mui/joy';
+import {useNavigate} from 'react-router-dom'
 
 
-
-function ModeToggle() {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  // necessary for server-side rendering
-  // because mode is undefined on the server
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return null;
-  }
-
-  return (
-    <Button
-      variant="outlined"
-      onClick={() => {
-        setMode(mode === 'light' ? 'dark' : 'light');
-      }}
-    >
-      {mode === 'light' ? 'Turn dark' : 'Turn light'}
-    </Button>
-  );
-}
 
 export default function Login() {
+  const navigate = useNavigate();
   return (
     <CssVarsProvider>
       <main>
-        <ModeToggle />
         <Sheet
           sx={{
             width: 300,
@@ -50,6 +26,7 @@ export default function Login() {
             gap: 2,
             borderRadius: 'sm',
             boxShadow: 'md',
+    
           }}
           variant="outlined"
         >
@@ -78,7 +55,7 @@ export default function Login() {
             />
           </FormControl>
 
-          <Button sx={{ mt: 1 /* margin top */ }}>Log in</Button>
+          <Button sx={{ mt: 1 /* margin top */ }} onClick={() => {navigate("/Home")}}>Log in</Button>
           <Typography
             endDecorator={<Link href="/sign-up">Sign up</Link>}
             fontSize="sm"
