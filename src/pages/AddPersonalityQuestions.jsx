@@ -1,12 +1,51 @@
 import { Box, Typography, TextField, Button } from '@mui/material';
-import React from 'react';
+import React, {useState} from 'react';
 import SideNav from '../components/SideNav';
 import NavBar from '../components/NavBar';
+import axios from 'axios'
 
 export default function AddPersonalityQuestions() {
+
+  const [successMessage, setSuccessMessage] = useState('');
+
   const handleInput = (event) => {
-    event.target.value = event.target.value.slice(0, 1).toUpperCase();
+    const modifiedValue = event.target.value.slice(0, 1).toUpperCase();
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [event.target.name]: modifiedValue,
+    }));
   };
+  
+  const [formData, setFormData] = useState({
+    question: '',
+    agreeType: '',
+    denialType: '',
+  });
+
+  const handleChange = (event) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  try {
+      const response = await axios.post('http://localhost:3000/personality-questions', formData);
+      console.log(response.data);
+      setSuccessMessage('Submission successful!');
+      setFormData({
+        question: '',
+        agreeType: '',
+        denialType: '',
+      });
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <NavBar />
@@ -25,19 +64,32 @@ export default function AddPersonalityQuestions() {
             Add Questions
           </Typography>
           <Box
+           component = "form"
+           onSubmit={handleSubmit}
             sx={{
               display: 'flex',
+              justifyContent: 'center',
               flexDirection: 'column',
               alignItems: 'center',
             }}
           >
+
+          {successMessage && (
+              <Typography variant="body1" align="center" sx={{ color: 'green' }}>
+                {successMessage}
+              </Typography>
+            )} 
             <TextField
+            name = "question"
              label="Question"
               variant="outlined" 
               margin="normal" 
               sx={{ width: '400px' }}
+              value={formData.question}
+              onChange={handleChange}
                />
-            <TextField 
+            <TextField
+            name = "agreeType"
             label="Agree Type"
              variant="outlined"
               margin="normal"
@@ -51,27 +103,33 @@ export default function AddPersonalityQuestions() {
                 },
                 onChange: handleInput,
               }}
+              value={formData.agreeType}
+              onChange={handleChange}
                />
             <TextField 
+            name = "denialType"
             label="Deniel Type"
              variant="outlined"
               margin="normal"
               sx={{ width: '400px' }} 
               InputProps={{
                 inputProps: {
-                  maxLength: 1,
+                  maxLength: 2,
                   style: {
                     textTransform: 'uppercase',
                   },
                 },
                 onChange: handleInput,
               }}
+              value={formData.denialType}
+              onChange={handleChange}
               
               />
             <Button
              variant="contained" 
              color="primary"
              size="large"
+             type = "submit"
              sx={{ width: '400px' }} >
               Save
             </Button>

@@ -1,11 +1,27 @@
-import { Box, Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
-import React from 'react';
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton } from '@mui/material';
+import React, {useEffect, useState} from 'react';
 import SideNav from '../components/SideNav';
 import NavBar from '../components/NavBar';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete'
+import axios from 'axios';
 
 export default function UsersList() {
-  // Assume you have an array of users fetched from an API or any other data source
-  const users = [];
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const fetchUsers = async () => {
+    try{
+      const response = await axios.get('http://localhost:3000/users');
+      setUsers(response.data);
+
+  }catch (error){
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -30,8 +46,16 @@ export default function UsersList() {
                   <TableCell>{user.id}</TableCell>
                   <TableCell>{user.name}</TableCell>
                   <TableCell>{user.email}</TableCell>
-                  <TableCell>Update Button</TableCell>
-                  <TableCell>Delete Button</TableCell>
+                  <TableCell>
+                    <IconButton>
+                      <EditIcon/>
+                  </IconButton>
+                  </TableCell>
+                  <TableCell>
+                    <IconButton>
+                      <DeleteIcon/>
+                    </IconButton>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
