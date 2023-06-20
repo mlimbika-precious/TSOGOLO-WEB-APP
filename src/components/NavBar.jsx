@@ -122,7 +122,7 @@ export default function NavBar() {
   component="div"
   sx={{ display: { xs: 'none', sm: 'block' }, textAlign: 'center', color: 'black' }}
 >
-  <b>TSOGOLO ADMIN</b>
+  <b>TSOGOLO APP ADMIN PANEL</b>
 </Typography>
 
 

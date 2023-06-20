@@ -41,12 +41,15 @@ export default function Login() {
           alignItems: 'center',
           justifyContent: 'center',
           height: '100vh',
+          backgroundSize: 'cover',
         }}
       >
         <Card sx={{ boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)' }}>
           <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Typography variant="h4" align="center">
-              <b>Login</b>
+             <b>
+                <span style={{ color: 'orange' }}>Tsogolo App</span>
+              </b>
               {error && (
                 <Card sx={{ boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', backgroundColor: '#dd4b39',padding:0, width: 300,  height: 'fit-content',mx: 'auto' }}>
                 <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -79,9 +82,19 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               sx={{ width: 300, marginTop: '1rem' }}
             />
-            <Button variant="contained" onClick={handleLogin} sx={{ marginTop: '1rem', alignSelf: 'center' }}>
-              Log in
-            </Button>
+            <Button
+  variant="contained"
+  onClick={handleLogin}
+  sx={{
+    marginTop: '1rem',
+    alignSelf: 'center',
+    '&:hover': {
+      backgroundColor: 'orange',
+    },
+  }}
+>
+  Log in
+</Button>
           </CardContent>
         </Card>
       </Container>
