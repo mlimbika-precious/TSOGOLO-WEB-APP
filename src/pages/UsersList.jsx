@@ -15,7 +15,7 @@ export default function UsersList() {
 
   const fetchUsers = async () => {
     try{
-      const response = await axios.get('http://localhost:3000/users');
+      const response = await axios.get('https://tsogoloapi-production.up.railway.app/users');
       setUsers(response.data);
 
   }catch (error){

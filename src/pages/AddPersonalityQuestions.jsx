@@ -32,7 +32,7 @@ export default function AddPersonalityQuestions() {
   const handleSubmit = async (event) => {
     event.preventDefault();
   try {
-      const response = await axios.post('http://localhost:3000/personality-questions', formData);
+      const response = await axios.post('https://tsogoloapi-production.up.railway.app/personality-questions', formData);
       console.log(response.data);
       setSuccessMessage('Submission successful!');
       setFormData({

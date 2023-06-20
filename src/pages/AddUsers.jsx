@@ -25,7 +25,7 @@ export default function AddUsers() {
   const handleSubmit = async (event) => {
     event.preventDefault();
   try {
-      const response = await axios.post('http://localhost:3000/users/register', formData);
+      const response = await axios.post('https://tsogoloapi-production.up.railway.app/users/register', formData);
       console.log(response.data);
       setSuccessMessage('Submission successful!');
       setFormData({
