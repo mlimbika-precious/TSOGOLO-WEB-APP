@@ -136,7 +136,7 @@ export default function NavBar() {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleLogout}
-              color="inherit"
+              color="black"
             >
               <ExitToAppIcon />
               <Typography variant="inherit" sx={{ fontSize: '0.8rem', color: 'black' }}>Logout</Typography>
@@ -149,7 +149,7 @@ export default function NavBar() {
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="inherit"
+              color="black"
             >
               <ExitToAppIcon />
             <Typography variant="inherit" sx={{ fontSize: '0.8rem', color: 'black' }}>Logout</Typography>
