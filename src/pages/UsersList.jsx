@@ -42,11 +42,11 @@ export default function UsersList() {
           <Table sx={{ marginTop: '50px' }}>
             <TableHead>
               <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Update</TableCell>
-                <TableCell>Delete</TableCell>
+                <TableCell><b>ID</b></TableCell>
+                <TableCell><b>Name</b></TableCell>
+                <TableCell><b>Email</b></TableCell>
+                <TableCell><b>Update</b></TableCell>
+                <TableCell><b>Delete</b></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

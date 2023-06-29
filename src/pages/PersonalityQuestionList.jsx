@@ -57,12 +57,12 @@ const editQuestionId = params.get('id');
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>ID</TableCell>
-                  <TableCell>Question</TableCell>
-                  <TableCell>Agree Type</TableCell>
-                  <TableCell>Denial Type</TableCell>
-                  <TableCell>Update</TableCell>
-                  <TableCell>Delete</TableCell>
+                  <TableCell><b>ID</b></TableCell>
+                  <TableCell><b>Question</b></TableCell>
+                  <TableCell><b>Agree Type</b></TableCell>
+                  <TableCell><b>Denial Type</b></TableCell>
+                  <TableCell><b>Update</b></TableCell>
+                  <TableCell><b>Delete</b></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

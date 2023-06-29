@@ -124,13 +124,22 @@ export default function NavBar() {
             <MenuIcon />
           </IconButton>
           <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block' }, textAlign: 'center', color: 'black' }}
-          >
-            <b>TSOGOLO APP ADMIN PANEL</b>
-          </Typography>
+          variant="h6"
+          noWrap
+          component="div"
+          sx={{
+            display: { xs: 'none', sm: 'block' },
+            textAlign: 'center',
+            color: 'black',
+            fontWeight: 'bold',
+            fontSize: '24px',
+            
+
+          }}
+        >
+          TSOGOLO APP ADMIN PANEL
+        </Typography>
+
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton

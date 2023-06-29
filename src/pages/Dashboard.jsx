@@ -5,6 +5,7 @@ import NavBar from '../components/NavBar';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
+
 export default function Dashboard() {
   const [questions, setQuestions] = useState([]);
   const [questionCount, setQuestionCount] = useState(0);
@@ -33,6 +34,8 @@ export default function Dashboard() {
     <>
       <NavBar />
       <Box height={30} />
+
+
       <Box sx={{ display: 'flex' }}>
         <SideNav />
         <Box
