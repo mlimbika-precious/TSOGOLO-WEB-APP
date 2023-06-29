@@ -6,6 +6,7 @@ import PersonalityQuestionList from './pages/PersonalityQuestionList';
 import Dashboard from './pages/Dashboard';
 import AddUsers from './pages/AddUsers';
 import UsersList from './pages/UsersList';
+import NavBar from './components/NavBar';
 
 
 
@@ -17,6 +18,7 @@ class App extends React.Component {
   
        <Routes>
         <Route path='/' exact element = {<Login />}></Route>
+        <Route path='/NavBar' exact element = {<NavBar />}></Route>
         <Route path='/dashboard' exact element = {<Dashboard />}></Route>
         <Route path='/addQuestions' exact element = {<AddPersonalityQuestions />}></Route>
         <Route path='/questionList' exact element = {<PersonalityQuestionList/>}></Route>

@@ -53,7 +53,7 @@ export default function AddPersonalityQuestions() {
       });
       setTimeout(() => {
         setSuccessMessage('');
-      }, 90000); // 2 seconds timeout
+      }, 90000); // 
       window.location.reload();
     } catch (error) {
       console.error(error);
@@ -137,7 +137,17 @@ export default function AddPersonalityQuestions() {
               value={formData.denialType}
               onChange={handleChange}
             />
-            <Button variant="contained" color="primary" size="large" type="submit" sx={{ width: '400px' }}>
+            <Button variant="contained"
+                    color="primary"
+                     size="large" 
+                     type="submit" 
+                     sx={{
+            width: '400px',
+             '&:hover': {
+              backgroundColor: 'orange',
+            },
+            }}
+                     >
               Save
             </Button>
           </Box>

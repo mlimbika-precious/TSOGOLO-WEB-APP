@@ -14,6 +14,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { useAppStore } from '../appStore';
+import { useNavigate } from 'react-router-dom';
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -22,13 +23,13 @@ const AppBar = styled(MuiAppBar, {
   backgroundColor: 'orange', // Set the desired color here
 }));
 
-
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const updateOpen = useAppStore((state) => state.updateOpen);
   const deopen = useAppStore((state) => state.deopen);
+  const navigate = useNavigate();
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -47,7 +48,11 @@ export default function NavBar() {
   };
 
   const handleLogout = () => {
-    // Add your logout logic here
+    // Perform logout logic here 
+
+
+    // Navigate to the login page
+    navigate('/');
   };
 
   const menuId = 'primary-search-account-menu';
@@ -97,7 +102,9 @@ export default function NavBar() {
         <IconButton size="large" aria-label="logout" color="inherit">
           <ExitToAppIcon />
         </IconButton>
-        <Typography variant="inherit" sx={{ fontSize: '0.8rem', color: 'black' }}>Logout</Typography>
+        <Typography variant="inherit" sx={{ fontSize: '0.8rem', color: 'black' }}>
+          Logout
+        </Typography>
       </MenuItem>
     </Menu>
   );
@@ -116,17 +123,14 @@ export default function NavBar() {
           >
             <MenuIcon />
           </IconButton>
-<Typography
-  variant="h6"
-  noWrap
-  component="div"
-  sx={{ display: { xs: 'none', sm: 'block' }, textAlign: 'center', color: 'black' }}
->
-  <b>TSOGOLO APP ADMIN PANEL</b>
-</Typography>
-
-
-
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ display: { xs: 'none', sm: 'block' }, textAlign: 'center', color: 'black' }}
+          >
+            <b>TSOGOLO APP ADMIN PANEL</b>
+          </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton
@@ -139,7 +143,9 @@ export default function NavBar() {
               color="black"
             >
               <ExitToAppIcon />
-              <Typography variant="inherit" sx={{ fontSize: '0.8rem', color: 'black' }}>Logout</Typography>
+              <Typography variant="inherit" sx={{ fontSize: '0.8rem', color: 'black' }}>
+                Logout
+              </Typography>
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -152,9 +158,9 @@ export default function NavBar() {
               color="black"
             >
               <ExitToAppIcon />
-            <Typography variant="inherit" sx={{ fontSize: '0.8rem', color: 'black' }}>Logout</Typography>
-
-
+              <Typography variant="inherit" sx={{ fontSize: '0.8rem', color: 'black' }}>
+                Logout
+              </Typography>
             </IconButton>
           </Box>
         </Toolbar>

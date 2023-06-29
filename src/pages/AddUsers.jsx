@@ -31,7 +31,21 @@ export default function AddUsers() {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/users/register', formData);
+      // Check if the email or username already exist in the database
+      const existingUserResponse = await axios.get(`http://localhost:3000/users?email=${formData.email}&name=${formData.name}`);
+      const existingUser = existingUserResponse.data;
+
+      if (existingUser.length > 0) {
+        setErrorMessage('User with the same email or name already exists');
+        return;
+      }
+
+      // Submit the form data if it's a new user
+      const response = await axios.post('http://localhost:3000/users/register', {
+        name: formData.name,
+        email: formData.email,
+      });
+
       console.log(response.data);
       setSuccessMessage('Submission successful!');
       setFormData({
@@ -42,7 +56,7 @@ export default function AddUsers() {
       setErrorMessage('');
       setTimeout(() => {
         setSuccessMessage('');
-      }, 90000); // 
+      }, 99000);
       window.location.reload();
     } catch (error) {
       console.error(error);
@@ -119,7 +133,12 @@ export default function AddUsers() {
               color="primary"
               size="large"
               type="submit"
-              sx={{ width: '400px' }}
+              sx={{
+                width: '400px',
+                '&:hover': {
+                  backgroundColor: 'orange',
+                },
+              }}
             >
               Add
             </Button>
