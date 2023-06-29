@@ -7,6 +7,7 @@ import axios from 'axios';
 export default function AddUsers() {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [submittedData, setSubmittedData] = useState(null); // New state variable
 
   const [formData, setFormData] = useState({
     name: '',
@@ -34,16 +35,12 @@ export default function AddUsers() {
       const response = await axios.post('http://localhost:3000/users/register', formData);
       console.log(response.data);
       setSuccessMessage('Submission successful!');
+      setSubmittedData(formData); // Update submitted data
       setFormData({
         name: '',
         email: '',
         password: '',
       });
-      setErrorMessage('');
-      setTimeout(() => {
-        setSuccessMessage('');
-      }, 99000); // 
-      window.location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -85,6 +82,11 @@ export default function AddUsers() {
                 {errorMessage}
               </Typography>
             )}
+            {submittedData && ( // Display submitted data if available
+              <Typography variant="body1" align="center">
+                Name: {submittedData.name}: Email {submittedData.email}
+              </Typography>
+            )}
             <TextField
               name="name"
               label="Name"
@@ -116,19 +118,18 @@ export default function AddUsers() {
             />
             <Button
               variant="contained"
-                color="primary"
-                size="large"
-                 type="submit"
-            sx={{
-            width: '400px',
-             '&:hover': {
-              backgroundColor: 'orange',
-            },
-            }}
->
-  Add
-</Button>
-
+              color="primary"
+              size="large"
+              type="submit"
+              sx={{
+                width: '400px',
+                '&:hover': {
+                  backgroundColor: 'orange',
+                },
+              }}
+            >
+              Add
+            </Button>
           </Box>
         </Box>
       </Box>

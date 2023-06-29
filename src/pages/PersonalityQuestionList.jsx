@@ -8,17 +8,14 @@ import NavBar from '../components/NavBar';
 import AddPersonalityQuestions from './AddPersonalityQuestions';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-
-
 export default function PersonalityQuestionList() {
-const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState([]);
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
 
-
-const navigate = useNavigate();
-const location = useLocation();
-const params = new URLSearchParams(location.search);
-const editQuestionId = params.get('id');
-
+  const navigate = useNavigate();
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const editQuestionId = params.get('id');
 
   useEffect(() => {
     fetchQuestions();
@@ -32,6 +29,7 @@ const editQuestionId = params.get('id');
       console.error(error);
     }
   };
+
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:3000/personality-questions/${id}`);
@@ -41,11 +39,16 @@ const editQuestionId = params.get('id');
     }
   };
 
- 
   const handleUpdate = (id) => {
     const questionToUpdate = questions.find((question) => question.id === id);
-    navigate(`/addQuestions?id=${id}`, { state: questionToUpdate });
+    setSelectedQuestion(questionToUpdate);
+    navigate(`/addQuestions?id=${id}`);
   };
+
+  const handleCancelUpdate = () => {
+    setSelectedQuestion(null);
+  };
+
   return (
     <>
       <NavBar />
@@ -73,11 +76,12 @@ const editQuestionId = params.get('id');
                     <TableCell>{question.agreeType}</TableCell>
                     <TableCell>{question.denialType}</TableCell>
                     <TableCell>
-                    {editQuestionId === question.id ? (
+                      {editQuestionId === question.id && selectedQuestion ? (
                         <AddPersonalityQuestions
-                          question={question.question}
-                          agreeType={question.agreeType}
-                          denialType={question.denialType}
+                          question={selectedQuestion.question}
+                          agreeType={selectedQuestion.agreeType}
+                          denialType={selectedQuestion.denialType}
+                          onCancel={handleCancelUpdate}
                         />
                       ) : (
                         <IconButton onClick={() => handleUpdate(question.id)}>

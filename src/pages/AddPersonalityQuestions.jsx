@@ -6,13 +6,15 @@ import axios from 'axios';
 
 export default function AddPersonalityQuestions() {
   const [successMessage, setSuccessMessage] = useState('');
-   const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const [formData, setFormData] = useState({
     question: '',
     agreeType: '',
     denialType: '',
   });
+  
+  const [submittedData, setSubmittedData] = useState(null);
 
   const handleInput = (event) => {
     const modifiedValue = event.target.value.slice(0, 1).toUpperCase();
@@ -32,11 +34,6 @@ export default function AddPersonalityQuestions() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Validation check
-    //if (formData.question.trim() === '' || formData.agreeType.trim() === '' || formData.denialType.trim() === '') {
-    //  return; // Do not submit if any field is empty
-   // }
-    // Check if any of the form fields are empty
     if (formData.question === '' || formData.agreeType === '' || formData.denialType === '') {
       setErrorMessage('Please fill in all fields');
       return;
@@ -46,15 +43,12 @@ export default function AddPersonalityQuestions() {
       const response = await axios.post('http://localhost:3000/personality-questions', formData);
       console.log(response.data);
       setSuccessMessage('Submission successful!');
+      setSubmittedData(formData);
       setFormData({
         question: '',
         agreeType: '',
         denialType: '',
       });
-      setTimeout(() => {
-        setSuccessMessage('');
-      }, 90000); // 
-      window.location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -90,6 +84,24 @@ export default function AddPersonalityQuestions() {
             {successMessage && (
               <Typography variant="body1" align="center" sx={{ color: 'green' }}>
                 {successMessage}
+              </Typography>
+            )}
+            {submittedData && (
+              <Box sx={{ textAlign: 'center', my: 2 }}>
+                <Typography variant="body1" align="center">
+                  Question: {submittedData.question}
+                </Typography>
+                <Typography variant="body1" align="center">
+                  Agree Type: {submittedData.agreeType}
+                </Typography>
+                <Typography variant="body1" align="center">
+                  Denial Type: {submittedData.denialType}
+                </Typography>
+              </Box>
+            )}
+            {errorMessage && (
+              <Typography variant="body1" align="center" sx={{ color: 'red' }}>
+                {errorMessage}
               </Typography>
             )}
             <TextField
@@ -137,17 +149,18 @@ export default function AddPersonalityQuestions() {
               value={formData.denialType}
               onChange={handleChange}
             />
-            <Button variant="contained"
-                    color="primary"
-                     size="large" 
-                     type="submit" 
-                     sx={{
-            width: '400px',
-             '&:hover': {
-              backgroundColor: 'orange',
-            },
-            }}
-                     >
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              type="submit"
+              sx={{
+                width: '400px',
+                '&:hover': {
+                  backgroundColor: 'orange',
+                },
+              }}
+            >
               Save
             </Button>
           </Box>
