@@ -26,7 +26,7 @@ const editQuestionId = params.get('id');
 
   const fetchQuestions = async () => {
     try {
-      const response = await axios.get('https://tsogoloapi-production.up.railway.app/personality-questions');
+      const response = await axios.get('http://localhost:3000/personality-questions');
       setQuestions(response.data);
     } catch (error) {
       console.error(error);
@@ -34,7 +34,7 @@ const editQuestionId = params.get('id');
   };
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://tsogoloapi-production.up.railway.app/personality-questions/${id}`);
+      await axios.delete(`http://localhost:3000/personality-questions/${id}`);
       fetchQuestions();
     } catch (error) {
       console.error(error);

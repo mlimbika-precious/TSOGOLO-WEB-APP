@@ -15,11 +15,20 @@ export default function UsersList() {
 
   const fetchUsers = async () => {
     try{
-      const response = await axios.get('https://tsogoloapi-production.up.railway.app/users');
+      const response = await axios.get('http://localhost:3000/users');
       setUsers(response.data);
 
   }catch (error){
       console.log(error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/user/${id}`);
+      fetchUsers();
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -52,8 +61,8 @@ export default function UsersList() {
                   </IconButton>
                   </TableCell>
                   <TableCell>
-                    <IconButton>
-                      <DeleteIcon/>
+                    <IconButton onClick={() => handleDelete(user.id)}>
+                        <DeleteIcon />
                     </IconButton>
                   </TableCell>
                 </TableRow>
